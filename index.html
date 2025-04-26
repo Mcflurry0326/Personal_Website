@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王翔的个人网站</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 1s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+  <script>
+    const languages = ['zh', 'en'];
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('[data-lang-zh]').forEach(el => {
+        if (lang === 'zh') {
+          el.textContent = el.dataset.langZh;
+        } else {
+          const targetAttr = 'lang' + lang.charAt(0).toUpperCase() + lang.slice(1);
+          if (el.dataset[targetAttr]) {
+            el.textContent = el.dataset[targetAttr];
+          }
+        }
+      });
+    }
+
+    function detectBrowserLanguage() {
+      const userLang = navigator.language.slice(0, 2);
+      if (languages.includes(userLang)) {
+        switchLanguage(userLang);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', detectBrowserLanguage);
+
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+<!-- Navbar -->
+<nav class="fixed w-full bg-gray-800 bg-opacity-90 shadow-md z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex justify-end items-center">
+    <div class="space-x-6 flex items-center">
+      <a href="#about" class="hover:text-yellow-400 transition" data-lang-zh="关于我" data-lang-en="About">关于我</a>
+      <a href="#education" class="hover:text-yellow-400 transition" data-lang-zh="教育背景" data-lang-en="Education">教育背景</a>
+      <a href="#knowledge" class="hover:text-yellow-400 transition" data-lang-zh="知识涵盖" data-lang-en="Knowledge">知识涵盖</a>
+      <a href="#skills" class="hover:text-yellow-400 transition" data-lang-zh="技能" data-lang-en="Skills">技能</a>
+      <a href="#projects" class="hover:text-yellow-400 transition" data-lang-zh="项目/爱好" data-lang-en="Projects">项目/爱好</a>
+      <a href="#contact" class="hover:text-yellow-400 transition" data-lang-zh="联系我" data-lang-en="Contact">联系我</a>
+      <select onchange="switchLanguage(this.value)" class="ml-4 px-3 py-1 border border-yellow-400 text-yellow-400 bg-transparent rounded hover:bg-yellow-400 hover:text-gray-800 transition">
+        <option value="zh">🌐 中文</option>
+        <option value="en">🌐 English</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center pt-32 bg-gradient-to-b from-gray-900 to-gray-800">
+    <img src="profile.jpg" alt="Profile" class="w-48 h-auto object-cover rounded-lg shadow-lg mb-6 fade-in">
+    <h1 class="text-5xl font-extrabold mb-4 fade-in" data-lang-zh="你好，我是王翔" data-lang-en="Hi, I'm Xiang Wang">你好，我是王翔</h1>
+    <p class="text-xl text-gray-400 fade-in" data-lang-zh="一个充满热情的学习者和创造者。" data-lang-en="A passionate learner and creator.">一个充满热情的学习者和创造者。</p>
+</section>
+  
+
+<!-- About Section -->
+<section id="about" class="max-w-5xl mx-auto py-20 px-6">
+  <h2 class="text-3xl font-bold mb-10 text-center fade-in" data-lang-zh="关于我" data-lang-en="About Me">关于我</h2>
+  <p class="text-lg fade-in text-center" data-lang-zh="我是王翔，一名热爱探索新技术和创作有意义项目的开发者。" data-lang-en="I'm Xiang Wang, a developer passionate about exploring new technologies and creating meaningful projects.">我是王翔，一名热爱探索新技术和创作有意义项目的开发者。</p>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="bg-gray-800 py-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-10 text-center fade-in" data-lang-zh="教育背景" data-lang-en="Education">教育背景</h2>
+    <div class="space-y-6">
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg fade-in">
+        <h3 class="text-2xl font-semibold mb-2" data-lang-zh="伦敦国王学院" data-lang-en="King's College London">伦敦国王学院</h3>
+        <p data-lang-zh="数据科学硕士，2024-2025" data-lang-en="MSc in Data Science, 2024-2025">数据科学硕士，2024-2025</p>
+      </div>
+      <div class="bg-gray-700 p-6 rounded-lg shadow-lg fade-in">
+        <h3 class="text-2xl font-semibold mb-2" data-lang-zh="武汉大学" data-lang-en="Wuhan University">武汉大学</h3>
+        <p data-lang-zh="数学理学学士，2020-2024" data-lang-en="BSc in Mathematics, 2020-2024">数学理学学士，2020-2024</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Knowledge Coverage Section -->
+<section id="knowledge" class="bg-gray-900 py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-10 text-center fade-in" data-lang-zh="知识涵盖" data-lang-en="Knowledge Coverage">知识涵盖</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="数学分析" data-lang-en="Mathematical Analysis">数学分析</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="高等代数" data-lang-en="Advanced Algebra">高等代数</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="概率论与数理统计" data-lang-en="Probability Theory and Mathematical Statistics">概率论与数理统计</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="最优化理论与算法" data-lang-en="Optimization Theory and Algorithms">最优化理论与算法</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="数据结构与算法" data-lang-en="Data Structures and Algorithms">数据结构与算法</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="模式识别" data-lang-en="Pattern Recognition">模式识别</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="机器学习" data-lang-en="Machine Learning">机器学习</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in" data-lang-zh="大数据技术" data-lang-en="Big Data Technology">大数据技术</div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="bg-gray-900 py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-10 text-center fade-in" data-lang-zh="技能" data-lang-en="Skills">技能</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in">HTML</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in">CSS</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in">JavaScript</div>
+      <div class="p-6 bg-gray-700 rounded-lg hover:scale-110 transform transition fade-in">Python</div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="max-w-6xl mx-auto py-20 px-6">
+  <h2 class="text-3xl font-bold mb-10 text-center fade-in" data-lang-zh="项目/爱好" data-lang-en="Projects / Hobbies">项目/爱好</h2>
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:scale-105 transform transition fade-in">
+      <h3 class="text-2xl font-semibold mb-2" data-lang-zh="摄影网站" data-lang-en="Photography Website">摄影网站</h3>
+      <p data-lang-zh="展示我对捕捉美好瞬间与创意设计的热爱。" data-lang-en="Showcasing my passion for capturing beautiful moments and creative design.">展示我对捕捉美好瞬间与创意设计的热爱。</p>
+    </div>
+    <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:scale-105 transform transition fade-in">
+      <h3 class="text-2xl font-semibold mb-2" data-lang-zh="AI助手项目" data-lang-en="AI Assistant Project">AI助手项目</h3>
+      <p data-lang-zh="开发智能聊天机器人，协助日常任务，提高效率。" data-lang-en="Building an intelligent chatbot to assist with everyday tasks and enhance productivity.">开发智能聊天机器人，协助日常任务，提高效率。</p>
+    </div>
+    <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:scale-105 transform transition fade-in">
+      <h3 class="text-2xl font-semibold mb-2" data-lang-zh="声纹识别签到系统" data-lang-en="Speaker Recognition Attendance System">声纹识别签到系统</h3>
+      <p data-lang-zh="开发基于声纹识别的自动化签到系统，提升会议与课堂效率。" data-lang-en="Developed an automated attendance system based on speaker recognition to improve efficiency in meetings and classes.">开发基于声纹识别的自动化签到系统，提升会议与课堂效率。</p>
+    </div>
+    <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:scale-105 transform transition fade-in">
+      <h3 class="text-2xl font-semibold mb-2" data-lang-zh="伦敦共享单车需求预测" data-lang-en="London Bike-sharing Demand Prediction">伦敦共享单车需求预测</h3>
+      <p data-lang-zh="运用机器学习模型预测伦敦各区域共享单车的使用需求，优化运维调度。" data-lang-en="Utilized machine learning models to predict bike-sharing demand across London to optimize operational deployment.">运用机器学习模型预测伦敦各区域共享单车的使用需求，优化运维调度。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="bg-gray-800 py-20">
+  <div class="max-w-4xl mx-auto text-center px-6 fade-in">
+    <h2 class="text-3xl font-bold mb-6" data-lang-zh="联系我" data-lang-en="Contact Me">联系我</h2>
+    <p class="mb-4" data-lang-zh="欢迎通过邮箱或社交媒体与我联系！" data-lang-en="Feel free to reach out via email or connect on social media!">欢迎通过邮箱或社交媒体与我联系！</p>
+    <p>Email: <a href="mailto:xiangw24@outlook.com" class="text-yellow-400 hover:underline">xiangw24@outlook.com</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center text-gray-500 text-sm py-6">
+  &copy; 2025 王翔. All rights reserved.
+</footer>
+
+</body>
+</html>
